@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Note, getNotes } from "../(apis)/notes";
+import { Note, getNotes } from "../apis/notes";
+import CreateNote from "./CreateNote";
 
 export default async function NotePage() {
   const notes = await getNotes();
@@ -12,11 +13,12 @@ export default async function NotePage() {
           return <Note key={note.id} note={note} />;
         })}
       </div>
+      <CreateNote />
     </div>
   );
 }
 
-const Note: React.FC<Note> = (note: Note) => {
+const Note = ({ note }: { note: Note }) => {
   const { id, title, content, created } = note;
 
   return (
